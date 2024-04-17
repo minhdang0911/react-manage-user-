@@ -5,6 +5,7 @@ import { FetchAllUser } from '../Services/UserService';
 import ReactPaginate from 'react-paginate';
 import ModalAddnew from './ModalAddNew';
 import ModalEditUser from './ModalEditUser';
+import ModalComfirm from './ModalComfirm';
 import _ from 'lodash';
 const Header = (props) => {
     const [listUser, setListUsers] = useState([]);
@@ -14,10 +15,13 @@ const Header = (props) => {
     const [isShowModalAddNew, setIsShowModalAddNew] = useState(false);
     const [isShowModalEdit, setIsShowModalEdit] = useState(false);
     const [dataUserEdit, setDataUserEdit] = useState({});
+    const [isShowModalDelete, setIsShowModalDelete] = useState(false);
+    const [dataUserDelete, setDataUserDelete] = useState({});
 
     const handleClose = () => {
         setIsShowModalAddNew(false);
         setIsShowModalEdit(false);
+        setIsShowModalDelete(false);
     };
     useEffect(() => {
         //call api
@@ -53,6 +57,11 @@ const Header = (props) => {
         console.log('index', index);
         cloneListUsers[index].first_name = user.first_name;
         setListUsers(cloneListUsers);
+    };
+
+    const handleDeleteUser = (user) => {
+        setIsShowModalDelete(true);
+        setDataUserDelete(user);
     };
 
     return (
@@ -95,7 +104,9 @@ const Header = (props) => {
                                         <button className="btn btn-warning mx-3" onClick={() => handleEditUser(item)}>
                                             Edit
                                         </button>
-                                        <button className="btn btn-danger">Delete</button>
+                                        <button className="btn btn-danger" onClick={() => handleDeleteUser(item)}>
+                                            Delete
+                                        </button>
                                     </td>
                                 </tr>
                             );
@@ -128,6 +139,7 @@ const Header = (props) => {
                 handleClose={handleClose}
                 handleEditUserFromModal={handleEditUserFromModal}
             />
+            <ModalComfirm show={isShowModalDelete} handleClose={handleClose} dataUserDelete={dataUserDelete} />
         </>
     );
 };
