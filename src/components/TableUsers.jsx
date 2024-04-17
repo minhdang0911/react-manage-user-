@@ -4,15 +4,19 @@ import Table from 'react-bootstrap/Table';
 import { FetchAllUser } from '../Services/UserService';
 import ReactPaginate from 'react-paginate';
 import ModalAddnew from './ModalAddNew';
+import ModalEditUser from './ModalEditUser';
 const Header = (props) => {
     const [listUser, setListUsers] = useState([]);
     const [totalUsers, setTotalUsers] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
 
     const [isShowModalAddNew, setIsShowModalAddNew] = useState(false);
+    const [isShowModalEdit, setIsShowModalEdit] = useState(false);
+    const [dataUserEdit, setDataUserEdit] = useState({});
 
     const handleClose = () => {
         setIsShowModalAddNew(false);
+        setIsShowModalEdit(false);
     };
     useEffect(() => {
         //call api
@@ -35,6 +39,11 @@ const Header = (props) => {
 
     const hanleUpdateTable = (user) => {
         setListUsers([user, ...listUser]);
+    };
+
+    const handleEditUser = (user) => {
+        setDataUserEdit(user);
+        setIsShowModalEdit(true);
     };
 
     return (
@@ -60,6 +69,7 @@ const Header = (props) => {
                         <th>Email</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,6 +82,12 @@ const Header = (props) => {
                                     <td>{item.email}</td>
                                     <td>{item.first_name}</td>
                                     <td>{item.last_name}</td>
+                                    <td>
+                                        <button className="btn btn-warning mx-3" onClick={() => handleEditUser(item)}>
+                                            Edit
+                                        </button>
+                                        <button className="btn btn-danger">Delete</button>
+                                    </td>
                                 </tr>
                             );
                         })}
@@ -97,6 +113,7 @@ const Header = (props) => {
                 activeClassName="active"
             />
             <ModalAddnew show={isShowModalAddNew} handleClose={handleClose} hanleUpdateTable={hanleUpdateTable} />
+            <ModalEditUser show={isShowModalEdit} dataUserEdit={dataUserEdit} handleClose={handleClose} />
         </>
     );
 };
