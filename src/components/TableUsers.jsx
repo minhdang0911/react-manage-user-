@@ -5,6 +5,7 @@ import { FetchAllUser } from '../Services/UserService';
 import ReactPaginate from 'react-paginate';
 import ModalAddnew from './ModalAddNew';
 import ModalEditUser from './ModalEditUser';
+import _ from 'lodash';
 const Header = (props) => {
     const [listUser, setListUsers] = useState([]);
     const [totalUsers, setTotalUsers] = useState(0);
@@ -20,7 +21,7 @@ const Header = (props) => {
     };
     useEffect(() => {
         //call api
-        getUsers(2);
+        getUsers(1);
     }, []);
 
     const getUsers = async (page) => {
@@ -44,6 +45,14 @@ const Header = (props) => {
     const handleEditUser = (user) => {
         setDataUserEdit(user);
         setIsShowModalEdit(true);
+    };
+
+    const handleEditUserFromModal = (user) => {
+        let cloneListUsers = _.cloneDeep(listUser);
+        let index = listUser.findIndex((item) => item.id === user.id);
+        console.log('index', index);
+        cloneListUsers[index].first_name = user.first_name;
+        setListUsers(cloneListUsers);
     };
 
     return (
@@ -113,7 +122,12 @@ const Header = (props) => {
                 activeClassName="active"
             />
             <ModalAddnew show={isShowModalAddNew} handleClose={handleClose} hanleUpdateTable={hanleUpdateTable} />
-            <ModalEditUser show={isShowModalEdit} dataUserEdit={dataUserEdit} handleClose={handleClose} />
+            <ModalEditUser
+                show={isShowModalEdit}
+                dataUserEdit={dataUserEdit}
+                handleClose={handleClose}
+                handleEditUserFromModal={handleEditUserFromModal}
+            />
         </>
     );
 };
