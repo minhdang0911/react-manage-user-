@@ -64,6 +64,12 @@ const Header = (props) => {
         setDataUserDelete(user);
     };
 
+    const handleDeleteUserFromModal = (user) => {
+        let cloneListUsers = _.cloneDeep(listUser);
+        cloneListUsers = cloneListUsers.filter((item) => item.id !== user.id);
+        setListUsers(cloneListUsers);
+    };
+
     return (
         <>
             <div className="my-3 add-new">
@@ -139,7 +145,12 @@ const Header = (props) => {
                 handleClose={handleClose}
                 handleEditUserFromModal={handleEditUserFromModal}
             />
-            <ModalComfirm show={isShowModalDelete} handleClose={handleClose} dataUserDelete={dataUserDelete} />
+            <ModalComfirm
+                show={isShowModalDelete}
+                handleClose={handleClose}
+                dataUserDelete={dataUserDelete}
+                handleDeleteUserFromModal={handleDeleteUserFromModal}
+            />
         </>
     );
 };
