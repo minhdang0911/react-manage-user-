@@ -10,7 +10,7 @@ import ModalComfirm from './ModalComfirm';
 import _, { debounce } from 'lodash';
 import { CSVLink, CSVDownload } from 'react-csv';
 import Papa from 'papaparse';
-import { toast, Toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 const Header = (props) => {
     const [listUser, setListUsers] = useState([]);
     const [totalUsers, setTotalUsers] = useState(0);
