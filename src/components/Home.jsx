@@ -1,5 +1,5 @@
 import React from 'react';
-import './Home.css';
+import './Home.scss';
 import $ from 'jquery';
 import { useState, useEffect } from 'react';
 
@@ -21,6 +21,10 @@ const Home = () => {
         });
     });
 
+    useEffect(() => {
+        document.title = 'Trang chủ';
+    }, []);
+
     return (
         <div>
             <div className="banner d-flex align-items-center">
@@ -36,8 +40,8 @@ const Home = () => {
                     <div className="inner-desc">
                         <p>
                             Dự án quản lý người dùng với các chức năng thêm sửa xóa người dùng đăng nhập đăng ký tài
-                            khoản sắp xếp theo tên id.Tìm kiếm theo email.Phân quyền người dùng khoản.Import và Export
-                            file Excel
+                            khoản sắp xếp theo tên id.Tìm kiếm theo email.Phân quyền người dùng .Import và Export file
+                            Excel
                         </p>
                         <form style={{ display: 'none' }}>
                             <div className="form-group d-flex flex-wrap">

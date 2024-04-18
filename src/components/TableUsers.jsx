@@ -157,6 +157,10 @@ const Header = (props) => {
         }
     };
 
+    useEffect(() => {
+        document.title = 'Quản lý người dùng';
+    }, []);
+
     return (
         <>
             <div className="my-3 add-new">

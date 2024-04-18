@@ -12,7 +12,7 @@ const Header = (props) => {
             <Container>
                 <Navbar.Brand href="/">
                     <img src={logo} width="35" height="35" className="d-inline-block align-top" alt="logo" />
-                    <span> Manage User</span>
+                    <span> Quản lý người dùng</span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
