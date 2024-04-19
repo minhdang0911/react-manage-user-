@@ -1,12 +1,12 @@
 import './App.scss';
 import Header from './components/Header';
-import TableUsers from './components/TableUsers';
+
 import Container from 'react-bootstrap/Container';
 
 import { ToastContainer, toast } from 'react-toastify';
-import Home from './components/Home';
-import Login from './components/Login';
-import { Routes, Route, Link } from 'react-router-dom';
+
+import AppRoutes from './routes/AppRoutes';
+
 import { useContext } from 'react';
 import { UserContext } from './context/UserContext';
 import { useEffect } from 'react';
@@ -25,12 +25,7 @@ function App() {
                 <Header />
                 <Container>
                     {/* <TableUsers /> */}
-
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/users" element={<TableUsers />} />
-                        <Route path="/login" element={<Login />} />
-                    </Routes>
+                    <AppRoutes />
                 </Container>
 
                 {/* </Container> */}
