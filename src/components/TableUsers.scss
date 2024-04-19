@@ -9,7 +9,7 @@
 }
 
 .add-new {
-    display: flex;
+    // display: flex;
     align-items: center;
     justify-content: space-between;
 
@@ -20,5 +20,29 @@
         i {
             padding: 0 2px;
         }
+    }
+}
+
+.customize-table {
+    // width: inherit;
+    overflow-x: auto;
+}
+
+.pagination {
+    justify-content: center !important;
+}
+
+/* Sử dụng media queries để điều chỉnh kích thước của các cột và phần tử trong bảng */
+@media (max-width: 768px) {
+    .customize-table th,
+    .customize-table td {
+        font-size: 0.8em; /* Giảm kích thước font chữ */
+    }
+}
+
+@media (max-width: 576px) {
+    .customize-table th,
+    .customize-table td {
+        font-size: 0.7em; /* Giảm kích thước font chữ thêm nữa */
     }
 }
